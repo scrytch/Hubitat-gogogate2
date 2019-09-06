@@ -1,13 +1,17 @@
-Composite Driver for GoGoGate2 management in Hubitat
+Composite Driver for iSmartGate management in Hubitat
 =======
 
-This is a composite driver for GoGoGate2 management in Hubitat.  Features are:
-* Parent driver installs for GoGoGate device endpoint itself  This allows:
-    * Multiple door devices to detected/installed for a single GoGoGate2 (up to the supported three)
+This is a dirty hack of the composite drivers for GoGoGate drivers by mgroeninger to give iSmartGate management in Hubitat.  Features are:
+* Parent driver installs for iSmartGate device endpoint itself  This allows:
+    * Multiple door devices to detected/installed for a single iSmartGate (up to the supported three)
     * The lights to be controlled
     * Minimizes http requests to the device for polling
 * Child devices present doors as both door controls and switch controls, making Alexa integration simplier
-* Child devices report temperature and battery readings for each sensor
+* Child devices DO NOT report temperature and battery readings for each sensor as I have removed this as I use hardwired sensors without temp/batt support which was causing issues creating the child devices.
+
+NOTE: I have also hardcoded this to use only door 1 & 2 of the iSmartGate - search for the line "    for (i in 1..2) {" (line 192 in my file) and change the "2" to be the total number of doors (up to 3 maximum) you have configured.
+
+Installation info is similar to below but use iSmartGate versions of the files
 
 Installation
 1. Add the child device driver to Drivers Code on your Hubitat hub from https://raw.githubusercontent.com/mgroeninger/Hubitat-gogogate2/master/GoGoGate_child_driver.groovy
